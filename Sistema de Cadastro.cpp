@@ -21,7 +21,7 @@ void limparArea(int colIni, int linIni, int colFin, int linFin)
 
 void desenharMoldura(int colIni, int linIni, int colFin, int linFin)
 {
-	// limpa a ·rea da moldura
+	// limpa a √°rea da moldura
 	limparArea(colIni, linIni, colFin, linFin);
 	
 	// desenha as linhas horizontais
@@ -96,8 +96,8 @@ string perguntar(int col, int lin, string pergunta)
 }
 
 
-//*****************************************************************************************************************************//
-//*****************************************************************************************************************************//
+//*******************************************//
+//*******************************************//
 
 
 
@@ -124,16 +124,16 @@ void cadastroVEICULO()
         centralizar("Cadastro de Carros", 6, 10, 70);
         gotoxy(11,7); cout << "Placa: ";
         gotoxy(11,8); cout << "Categoria: ";
-	gotoxy(11,9); cout << "marca: ";
-	gotoxy(11,10); cout << "modelo: ";
+		gotoxy(11,9); cout << "marca: ";
+		gotoxy(11,10); cout << "modelo: ";
         gotoxy(11,11); cout << "ano_fabricacao: ";
-	gotoxy(11,12); cout << "cor: ";
-	gotoxy(11,13); cout << "responsavel_legal: ";
+		gotoxy(11,12); cout << "cor: ";
+		gotoxy(11,13); cout << "responsavel_legal: ";
     
     // pergunta o codigo do carro
     gotoxy(20,7); getline(cin, registro.placa);
 	
-	// procura pelo codigo para ver se o carro j· foi cadastrado
+	// procura pelo codigo para ver se o carro j√° foi cadastrado
 	achei = false;
 	for (int x=0; x<listaCarros.size(); x++)
 	{
@@ -167,7 +167,7 @@ void cadastroVEICULO()
 		if (resp == "A")
         {
         	
-        	// o usu·rio deseja alterar os dados do livro
+        	// o usu√°rio deseja alterar os dados do livro
 			// limpa a area para entrar os novos dados
             limparArea(20, 8, 69, 9);
             fflush(stdin);
@@ -183,11 +183,11 @@ void cadastroVEICULO()
             cin >> registro.ano_fabricacao;
             cout << "Cor: ";
             cin >> registro.cor;
-            cout << "Respons·vel Legal do carro: ";
+            cout << "Respons√°vel Legal do carro: ";
             cin >> registro.responsavel_legal;
 	    	fflush(stdin);
             
-            // solicita confirmaÁao da alteraÁ„o
+            // solicita confirma√ßao da altera√ß√£o
             resp = perguntar(11, 14, "Confirma alteracao (S/N) :");
 
             if (resp == "S")
@@ -197,7 +197,7 @@ void cadastroVEICULO()
 		}
 		else if (resp == "E")
 		{
-			// o usu·rio deseja excluir o livro
+			// o usu√°rio deseja excluir o livro
 			resp = perguntar(11,10,"Confirma exclusao (S/N) :");
 			if (resp == "S")
 			{
@@ -207,7 +207,7 @@ void cadastroVEICULO()
 	}
 	else
 	{
-		// se n„o achou, pergunta se deseja cadastrar um novo livro
+		// se n√£o achou, pergunta se deseja cadastrar um novo livro
 		resp = perguntar(11,14,"Carro nao encontrado. Cadastrar (S/N) :");
 		
 		if (resp == "S")
@@ -245,42 +245,50 @@ void cadastroVEICULO()
 }
 
 
-//*****************************************************************************************************************************//
-//*****************************************************************************************************************************//
+//*******************************************//
+//*******************************************//
 
 
 
 void listarCarros()
 {
-    desenharMoldura(10, 5, 70, 15);
-    centralizar("Lista de Carros", 6, 10, 70);
 
-    if (listaCarros.empty())
-    {
-        cout << "Nenhum Carro cadastrado.";
-    }
-    else
-    {
-        for (int i = 0; i < listaCarros.size(); i++)
+    desenharMoldura(10, 5, 95, 23);
+    centralizar("Lista de Carros", 6, 10, 90);
+    
+    textcolor(YELLOW);
+    gotoxy(13,7); cout << "Placa |";
+    gotoxy(22,7); cout <<"Categoria |";
+    gotoxy(33,7); cout << " Marca ";
+    gotoxy(45,7); cout << "| Modelo |";
+    gotoxy(56,7); cout << "Ano |";
+    gotoxy(62,7); cout << " Cor ";
+    gotoxy(72,7); cout << "| Responsavel legal |";
+	textcolor(WHITE);
+	
+	int x, linha = 8;
+	 
+	 	
+        for (x=0; x <listaCarros.size(); x++)
         {
-            gotoxy(11, 7 + 8 * i); cout << i + 1 << "∞ veiculo :";
-            gotoxy(11, 8 + 8 * i); cout << "Placa: " << listaCarros[i].placa;
-            gotoxy(11, 9 + 8 * i); cout << "Categoria: " << listaCarros[i].categoria;
-            gotoxy(11, 10 + 8 * i); cout << "Marca: " << listaCarros[i].marca;
-            gotoxy(11, 11 + 8 * i); cout << "Modelo: " << listaCarros[i].modelo;
-            gotoxy(11, 12 + 8 * i); cout << "Ano de fabricacao: " << listaCarros[i].ano_fabricacao;
-            gotoxy(11, 13 + 8 * i); cout << "Cor: " << listaCarros[i].cor;
-            gotoxy(11, 14 + 8 * i); cout << "Responsavel legal: " << listaCarros[i].responsavel_legal;
+            gotoxy(13,linha+x ); cout << listaCarros[x].placa;
+            gotoxy(22,linha+x ); cout << listaCarros[x].categoria;
+            gotoxy(33,linha+x ); cout << listaCarros[x].marca;
+            gotoxy(45,linha+x ); cout << listaCarros[x].modelo;
+            gotoxy(56,linha+x ); cout << listaCarros[x].ano_fabricacao;
+            gotoxy(62,linha+x ); cout << listaCarros[x].cor;
+            gotoxy(72,linha+x ); cout << listaCarros[x].responsavel_legal;
+
 			
         }
-    }
-    cin.ignore();
+        gotoxy(13,linha+x); cout << "Pressione uma tecla para voltar: ";
+    getch();
 }
 
 
 
-//*****************************************************************************************************************************//
-//*****************************************************************************************************************************//
+//*******************************************//
+//*******************************************//
 
 
 
@@ -292,14 +300,15 @@ main()
 
     vector<string> menuPrincipal;
     menuPrincipal.push_back("1 - Cadastrar Carros");
-    menuPrincipal.push_back("2 - Listar Carros  ");
-    menuPrincipal.push_back("0 - Sair           ");
+    menuPrincipal.push_back("2 - Listar Carros   ");
+    menuPrincipal.push_back("3 - Desafio         ");
+    menuPrincipal.push_back("0 - Sair            ");
 
     while (true)
     {
         clrscr();
         desenharMoldura(1, 1, 80, 25);
-        centralizar("Cadastro de VeÌculos", 2, 1, 80);
+        centralizar("Cadastro de Ve√≠culos", 2, 1, 80);
         op = mostrarMenu(2, 3, menuPrincipal);
 
         if (op == "0")
@@ -308,8 +317,9 @@ main()
             cadastroVEICULO();
         if (op == "2")
             listarCarros();
+        if (op == "3")
+            desafio();
     }
 
     return 0;
 }
-
